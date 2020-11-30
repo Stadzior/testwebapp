@@ -10,7 +10,7 @@ on:
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
     - uses: actions/checkout@master
@@ -27,9 +27,9 @@ jobs:
       run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
     - name: Deploy to Azure Web App
-      uses: azure/webapps-deploy@v1
+      uses: azure/webapps-deploy@v2
       with:
         app-name: 'kstadryniaktestwebapp'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_a41ddf6829484087b072fb189804c93b }}
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_37bd9c1056b445e7bc11dc0daac4842a }}
         package: ${{env.DOTNET_ROOT}}/myapp 
